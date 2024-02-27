@@ -1,5 +1,5 @@
 import "@/assets/styles/index.scss";
-import CalendarHeatmap from "@/components/CalendarHeatmap/index.vue";
+
 import Echarts from "@/components/Echarts/index.vue";
 import Pagination from "@/components/Pagination/index.vue";
 import RightToolbar from "@/components/RightToolbar/index.vue";
@@ -17,6 +17,7 @@ import "@kangc/v-md-editor/lib/style/base-editor.css";
 import "@kangc/v-md-editor/lib/theme/style/vuepress.css";
 import vuepressTheme from "@kangc/v-md-editor/lib/theme/vuepress.js";
 import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 import "element-plus/theme-chalk/index.css";
 import "element-plus/theme-chalk/dark/css-vars.css";
 import "nprogress/nprogress.css";
@@ -26,6 +27,7 @@ import Prism from "prismjs";
 import VueViewer from "v-viewer";
 import "viewerjs/dist/viewer.css";
 import "virtual:svg-icons-register";
+
 import {createApp, Directive} from "vue";
 import App from "./App.vue";
 
@@ -34,7 +36,10 @@ const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate); // pinia使用持久化插件
 
-VMdEditor.use(vuepressTheme, {Prism}).use(createEmojiPlugin()).use(createTodoListPlugin());
+VMdEditor
+    .use(vuepressTheme, {Prism})
+    .use(createEmojiPlugin())
+    .use(createTodoListPlugin());
 
 Object.keys(directive).forEach((key) => {
     app.directive(key, (directive as { [key: string]: Directive })[key]);
@@ -48,7 +53,8 @@ app.use(pinia);
 app.use(router);
 app.use(VMdEditor);
 app.use(VueViewer);
-app.component("CalendarHeatmap", CalendarHeatmap);
+
+
 app.component("svg-icon", SvgIcon);
 app.component("Pagination", Pagination);
 app.component("RightToolbar", RightToolbar);

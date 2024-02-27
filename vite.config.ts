@@ -44,11 +44,11 @@ export default defineConfig({
     server: {
         open: true, // 启动服务器后自动打开页面
         proxy: { // 配置代理,解决跨域问题
-            "/api": { // 获取路径中包含"/apu"的请求
-                target: "http://localhost:8888", // 后台服务所在的源
+            "/api": { // 获取路径中包含"/api"的请求
+                target: "http://127.0.0.1:8888", // 后台服务所在的源
                 changeOrigin: true, // 确认替换源
                 rewrite: (path) => path.replace(/^\/api/, ""), // 将"/api"替换为空字符串""
             },
         },
-    },
+    }
 });
